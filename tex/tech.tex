@@ -118,15 +118,17 @@ P_t(c|U=u)=(1-p^u)P_{t-1}(c|U) + p^uP_{t-1}(c|U)
 \subsection{CUDA}
 上述用于物体追踪的工具LibISR，以及用于驱动Kinect的Libfreenect 2都使用了CUDA\cite{CUDARef}（Compute Unified Device Architecture，统一计算设备架构）进行计算加速。CUDA是由Nvidia公司推出的一套并行计算平台和应用编程接口（API）。用户可以通过CUDA访问GPU的指令集架构（instruction set architecture，ISA），控制显卡中的并行运算模块，提升并发运算速度。由于GPU本身存在很多核心，线程是轻量级的，非常适合进行密集计算任务，例如在图像追踪中就可以用于图像和矩阵的计算。
 
-虽然CUDA基于GPU进行运作，但是实际应用中需要GPU与CPU协同配合。CPU被称为主机端（host），GPU被称为设备端（device）。通常的使用流程是，首先为主机端分配内存，初始化数据。然后将数据复制到设备端，设备端进行运算，运算结束后，将结果复制到主机端，完成计算。GPU中并行执行的函数被称为内核（kernel）。内核在调用时，必须通过执行配置，指定内核的网格（grid）结构，以及每个网格包含的线程块（block）的结构。他们的关系如图所示。
+虽然CUDA基于GPU进行运作，但是实际应用中需要GPU与CPU协同配合。CPU被称为主机端（host），GPU被称为设备端（device）。通常的使用流程是，首先为主机端分配内存，初始化数据。然后将数据复制到设备端，设备端进行运算，运算结束后，将结果复制到主机端，完成计算。GPU中并行执行的函数被称为内核（kernel）。内核在调用时，必须通过执行配置，指定内核的网格（grid）结构，以及每个网格包含的线程块（block）的结构。他们的关系如图\ref{fig:ceda}所示。
+
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=10cm]{cuda.png}
+  \includegraphics[width=12cm]{cuda.png}
   \bicaption[Kernel上的两层线程组织结构]
     {Kernel上的两层线程组织结构}
-    {The Double-Layers Kernel Architecture }
+    {The Double-Layer Kernel Architecture }
  \label{fig:ceda}
 \end{figure}
+
 由图\ref{fig:ceda}可见，通过Block ID和Thread ID就可以唯一的确定一个线程了。而这两个变量也是线程在运行时可以获得的变量。因此，可以通过它们进行图片或矩阵的遍历和并发。
 
 \section{编著与交互系统相关技术}
