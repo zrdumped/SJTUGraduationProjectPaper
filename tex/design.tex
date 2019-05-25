@@ -95,14 +95,32 @@
 LibISR基于C++基本的数据结构进行了进一步的封装，实现了向量（vector）、矩阵（matrix）、图像（image）、数据块（memory block）等数据结构。向量和矩阵再提供基本运算的基础上，还提供了针对于实际需求的成员变量名字，例如Vector3具有r,g,b三个成员，或x,y,z三个成员。此外，图像还提供了保存为文件的函数。数据块则为了统一管理在CPU和GPU进行转换的数据。
 
 \section{编著与交互系统客户端设计}
-前端基于Unity引擎进行实现。应用由Game Manager进行控制，包括应用当中的各个场景。其中编著系统主要在Build Experiment场景中，它与编辑已有场景共用同一个场景。而通过追踪技术与物体交互的部分则主要在Tracing Scene场景中。本小节将对这两个场景的设计进行详细的介绍。
+前端基于Unity引擎进行实现。应用由Game Manager进行控制，包括应用当中的各个场景。其中编著系统主要在Build Experiment场景中，而通过追踪技术与物体交互的部分则主要在Tracing Scene场景中，此外还设计了其他场景。本小节将对这些场景的设计进行介绍。
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=12cm]{figure/GMarc.png}
+  \bicaption[游戏管理器与场景架构设计图]
+    {游戏管理器与场景架构设计图}
+    {The Game Manager and Scenes Architecture Design}
+ \label{fig:gm}
+\end{figure}
 
 \subsection{游戏管理器}
 应用通过游戏管理器（Game Manager，GM）进行统一管理，负责的功能如下。
-功能其一，它控制场景之间切换的异步加载逻辑并提供切换场景的接口，从而可以清晰、统一的管理所有场景之间的逻辑关系和跳转逻辑。其二，它保存生命周期跨场景并且由用户进行的变量，这些变量不能随着场景被切换而被销毁，也不能在应用中以静态变量的形式存在，如登陆应用的账户信息、实验编著的结果等。其三，它提供了场景中静态变量的读取接口，因为这些变量需要在多个对象中使用，而且会随着应用开发进程产生变动，因此需要统一管理，包括系统支持的事件行为、器具类型、物质等等。而这些物体的信息则是保存在GM\_Storage中的。最后，由于在一部场景加载的时候，场景的光照设置是不会被修改的，因此不同于其他场景的光照，例如天空盒，需要针对每个场景进行单独的调整。而每个场景中的关照参数就被保存在GM\_Settings中。
+功能其一，它控制场景之间切换的异步加载逻辑并提供切换场景的接口，从而可以清晰、统一的管理所有场景之间的逻辑关系和跳转逻辑。其二，它保存生命周期跨场景并且由用户进行的变量，这些变量不能随着场景被切换而被销毁，也不能在应用中以静态变量的形式存在，如登陆应用的账户信息、实验编著的结果等。其三，它提供了场景中静态变量的读取接口，因为这些变量需要在多个对象中使用，而且会随着应用开发进程产生变动，因此需要统一管理，包括系统支持的事件行为、器具类型、物质等等。而这些物体的信息则是保存在GM\_Storage中的。最后，由于在一部场景加载的时候，场景的光照设置是不会被修改的，因此不同于其他场景的光照，例如天空盒，需要针对每个场景进行单独的调整。而每个场景中的光照参数就被保存在GM\_Settings中。
 
 \subsection{编著场景}
 编著场景为Build Experiment，负责创建、编辑实验场景。由游戏管理器进行管理。其中的架构分为三层。
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=12cm]{figure/buildearc.png}
+  \bicaption[编著场景架构设计图]
+    {游戏管理器与场景架构设计图}
+    {The Building Experiment Scene Design Architecture}
+ \label{fig:gm}
+\end{figure}
 
 最上层为用户接口（User Interface，UI），他保存了用户前端的控件。前端控件除了基本的按钮之外，主要分为四块。
 
@@ -153,7 +171,14 @@ LibISR基于C++基本的数据结构进行了进一步的封装，实现了向�
 登陆和注册页面前端进行用户输入，然后通过引擎发送网络数据到服务器进行输入检查，如果出现错误则进行错误提示，输入正确的逻辑仍然由游戏控制器负责。
 
 \section{网络通信设计}
-
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=12cm]{figure/netarc.png}
+  \bicaption[网络通信架构设计图]
+    {网络通信架构设计图}
+    {The Network Communication Design Architecture}
+ \label{fig:gm}
+\end{figure}
 应用需要在C++实现的服务器和C\#实现的客户端之间进行通信。通信采用了共同的关键字（Message），即command和tracing result。
 
 Command储存的是客户端向服务器发出的指令，包括指令种类，如启动程序录制、启动物体追踪、结束程序等。还包括指令所需要的变量，如追踪物体的种类等。Tracing Result为服务器向客户端返回的追踪结果，是一个由ISRPose的旋转、位移矩阵构成的数组。关键字分别在两端以各自形式的类存在。
