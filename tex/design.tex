@@ -160,7 +160,21 @@ LibISR基于C++基本的数据结构进行了进一步的封装，实现了向�
 对于场景中一直显示的按钮，如展开环境设置菜单的按钮，展开加入物体菜单的按钮等，由Button统一实现事件函数。他还控制在有面板被展开的时候暂停Lab Controller中物体控制的逻辑，避免用户在使用前端UI的时候操作干扰到实验编辑。
 \end{itemize}
 ~\\
-\indent    	上述逻辑需要使用一些持久化的对象，控制他们的变量，这些对象包括保存用户创建的物质的种类和量的对象Container，保存用户创建的步骤和流程的对象Step Content，以及保存系统支持的物质和时间类型的对象Support Info。
+\indent    	上述逻辑需要使用一些持久化的对象，控制他们的变量，这些对象包括保存用户创建的物质的种类和量的对象Container，保存用户创建的步骤和流程的对象Step Content，保存实验提示信息的颜色和大小信息的text，以及保存系统支持的物质和时间类型的对象Support Info。
+
+此外，由于创新新实验和编辑已有实验共用该场景，因此需要对场景中的编辑数据进行保存，这里使用了类Experiment Setup进行保存。其UML类图\ref{fig:uml}如图所示。
+
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=12cm]{figure/setupclass.png}
+  \bicaption[编著信息UML类图]
+    {编著信息UML类图}
+    {The UML's class Diagram of Authored Data}
+ \label{fig:uml}
+\end{figure}
+
+其中编著信息由四部分组成。每个场景有多个instrument info保存创建的物体的位置、旋转、物体种类、其中含有的物质的名字及其物质的量。每个场景由两个text info，分别用来储存实验提示信息中的标题和正文的位置、大小、颜色信息。每个场景包括一个environment info，用来保存场景中相机、光照的相关属性。每个场景还包括一个task flow，用来保存编辑的实验流程。每个实验流程有多个流程（step），每个步骤又有多个步骤（substep），步骤中包含步骤名称、对应的事件等信息。
 
 \subsection{交互场景}
 \subsection{其他场景}
