@@ -117,8 +117,8 @@ LibISR基于C++基本的数据结构进行了进一步的封装，实现了向�
   \centering
   \includegraphics[width=12cm]{figure/buildearc.png}
   \bicaption[编著场景架构设计图]
-    {游戏管理器与场景架构设计图}
-    {The Building Experiment Scene Design Architecture}
+    {编著场景架构设计图}
+    {The Building Experiment Scene Architecture Design}
  \label{fig:gm}
 \end{figure}
 
@@ -174,9 +174,23 @@ LibISR基于C++基本的数据结构进行了进一步的封装，实现了向�
  \label{fig:uml}
 \end{figure}
 
-其中编著信息由四部分组成。每个场景有多个instrument info保存创建的物体的位置、旋转、物体种类、其中含有的物质的名字及其物质的量。每个场景由两个text info，分别用来储存实验提示信息中的标题和正文的位置、大小、颜色信息。每个场景包括一个environment info，用来保存场景中相机、光照的相关属性。每个场景还包括一个task flow，用来保存编辑的实验流程。每个实验流程有多个流程（step），每个步骤又有多个步骤（substep），步骤中包含步骤名称、对应的事件等信息。
+其中编著信息由四部分组成。每个场景有多个instrument info保存创建的物体的位置、旋转、物体种类、其中含有的物质的名字及其物质的量。每个场景由两个text info，分别用来储存实验提示信息中的标题和正文的位置、大小、颜色信息。每个场景包括一个environment info，用来保存场景中相机、光照的相关属性。每个场景还包括一个task flow，用来保存编辑的实验流程。每个实验流程有多个流程（step），每个流程又有多个步骤（substep），步骤中包含步骤名称、对应的事件等信息。
 
 \subsection{交互场景}
+交互场景用于将用户创建的物体根据物体追踪的结果渲染到增强现实场景中。
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=12cm]{figure/tracingScene.png}
+  \bicaption[交互场景架构设计图]
+    {交互场景架构设计图}
+    {The Interaction Scene Architecture Design}
+ \label{fig:int}
+\end{figure}
+
+场景主要由三个组件构成，首先场景会通过游戏管理器获得要用于显示的被追踪物体的相关数据。然后根据Vuforia识别出场景中的标志物，他相对于真实场景静止，用于为Unity确定真实场景的位置和坐标系。之后会打开网络通讯，将追踪结果应用到应被渲染的物体上，就可以实现虚实融合了。
+
+
 \subsection{其他场景}
 除上述场景之外，系统还实现了主页、登录页面、注册页面等场景。它们结构与上述框架类似，而且比较简单。
 
