@@ -1,4 +1,4 @@
-\chapter{系统结果与评估}
+\chapter{系统结果与分析}
 \label{result}
 
 本章节将会首先总结系统功能，然后简单对系统的性能、交互方式、虚实融合效果三部分进行最终结果的分析。
@@ -18,16 +18,15 @@
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=3.3cm]{figure/beforeT.png}
-  \hspace{0.1cm}
-    \includegraphics[width=3.3cm]{figure/noT.png}
-  \hspace{0.1cm}
-    \includegraphics[width=3.3cm]{figure/staticT.png}
-  \hspace{0.1cm}
-  \includegraphics[width=3.3cm]{figure/movingT.png}
+  \includegraphics[width=6cm]{figure/beforeT.png}
+  \hspace{1cm}
+    \includegraphics[width=6cm]{figure/noT.png}
+    \includegraphics[width=6cm]{figure/staticT.png}
+  \hspace{1cm}
+  \includegraphics[width=6cm]{figure/movingT.png}
   \bicaption[物体追踪不同状态截图]
     {物体追踪不同状态截图}
-    {The Screenshots of Tracing Object in Different Situations}
+    {The Screen-shots of Tracing Object in Different Situations}
   \label{fig:SRR}
 \end{figure}
 
@@ -47,35 +46,86 @@
 
 最后，也检测了在移动端应用接受数据的传输速率。手机使用HiSilicon Kirin 970处理器。此时网络通讯速率仍然为每秒25次，项目帧率被Unity锁在30，但是实际上并不影响使用。
 
-\section{编著系统交互分析}
+\section{编著系统}
 系统在PC端和安卓手机端都进行了安装，两者都可以完成预期的工作。
 
-在编著页面，使用手机的过程中，用户可以顺利完成点击、拖动等操作，实现全部预期需求，包括实验环境的修改，实验器具和药品的添加和编辑，实验流程的编辑、实验提示信息属性编辑等，其中手机端编辑药品属性和物质的量的菜单如图\ref{fig:mEdit}所示。所有的交互方式与PC端保持一致，只需要用手指触摸代替鼠标点击。此外，通过用户试用反馈来看，在物体的创建、编辑等部分用户可以很快上手，但是流程编辑的部分则有些复杂。
+在使用收集应用进行实验编著时，用户可以顺利完成点击、拖动等操作，实现全部预期需求，例如图\ref{fig:authorRes}中展示的，实验器具和药品的添加和编辑，物体移动，实验环境的编辑，实验流程的编辑等。所有的交互方式与PC端保持一致，只需要用手指触摸代替鼠标点击。此外，通过用户试用反馈来看，在物体的创建、编辑等部分用户可以很快上手，但是流程编辑的部分则有些复杂。
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=12cm]{figure/mobileEdit.jpg}
+  \includegraphics[width=6cm]{figure/objRes.jpg}
+  \hspace{1cm}
+    \includegraphics[width=6cm]{figure/movingRes.jpg}
+    \includegraphics[width=6cm]{figure/envirRes.jpg}
+  \hspace{1cm}
+  \includegraphics[width=6cm]{figure/procedureRes.jpg}
   \bicaption[手机端编著系统截图]
     {手机端编著系统截图}
-    {The Screenshot of Authoring System on Mobile Device}
- \label{fig:mEdit}
+    {The Screen-shots of Authoring System on Mobile Device}
+ \label{fig:authorRes}
 \end{figure}
 
-\section{虚实融合效果分析}
-在增强现实页面，用户可以通过手机向服务器发送指令，开始追踪，并且经过标定后，将虚拟物体与真实物体重合并且同步移动。在这个过程中，用户需要用手机拍摄到二维码，之后可以移动物体，观察手机中的虚拟图像。增强现实应用的用户界面与追踪效果如图\ref{fig:mAR}所示。
+系统目前支持了工具、容器、药品、预置组合四大类物品可以添加，包括酒精灯、集气瓶、火柴、水槽、烧杯等高中化学实验需要的器材，以及铁、高锰酸钾、稀盐酸等高中化学实验常用药品。通过组合所有支持的器材和药品，用户可以编辑出完整的高锰酸钾制氧气的实验。
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=6cm]{figure/mobileTrace.jpg}
-  \bicaption[手机端增强现实场景截图]
-    {手机端增强现实场景截图}
-    {The Screenshot of AR System on Mobile Device}
+  \includegraphics[width=12cm]{figure/Kmno4res.png}
+  \bicaption[编著高锰酸钾制氧气实验截图]
+    {编著高锰酸钾制氧气实验截图}
+    {The Screen-shot of Authoring the Oxygen Production Experiment with $KMnO_4$}
+ \label{fig:authorRes}
+\end{figure}
+
+
+\section{虚实融合效果分析}
+在增强现实页面，用户可以通过手机向服务器发送指令，开始追踪，并且经过标定后，将虚拟物体与真实物体重合并且同步移动。在这个过程中，用户需要用手机拍摄到二维码，之后可以移动物体，观察手机中的虚拟图像。增强现实应用的用户界面如图\ref{fig:mAR}所示，此时还未开始追踪，物体处于初始状态。
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=12cm]{figure/ARui.jpg}
+  \bicaption[增强现实应用用户接口截图]
+    {增强现实应用用户接口截图}
+    {The Screen-shot of User Interface in AR application }
+ \label{fig:ARUI}
+\end{figure}
+
+其中，图中的UI控件用于辅助用户进行标定，包括物体的大小、坐标映射关系等等。可以提前确定的数据不再需要用户修改，用户只需要根据使用情景修改xyz三个方向上的偏移量就可以了,相关控件可以在标定完成之后隐藏。标定完成后，用户可以在增强现实场景中看到编著系统中编著好的的实验。
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=6cm]{figure/authorRes.jpg}
+    \hspace{1cm}
+  \includegraphics[width=6cm]{figure/table.jpg}
+  \bicaption[编著系统与增强现实系统实验对比图]
+    {编著系统与增强现实系统实验对比图}
+    {The Comparison Figure of Experiments in Authoring System and AR Application}
+ \label{fig:comp}
+\end{figure}
+
+之后用户就可以在实验场景中移动物体进行虚实融合了。用户需要首先使用图\ref{fig:ARUI}中的按钮向服务器发送指令，之后服务器就会开始对物体进行追踪，并将追踪结果实时显示在增强现实应用中。被追踪的物体还会显示用户在编著系统中输入的物质种类以及量，这样的虚拟信息很好的结合了增强现实的特性。
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=12cm]{figure/moving.jpg}
+  \bicaption[增强现实应用虚实融合和虚拟信息截图]
+    {增强现实应用虚实融合和虚拟信息截图}
+    {The Screen-shot of Virtual – Real Fusion and Virtual Hint Display in AR application }
  \label{fig:mAR}
 \end{figure}
 
-其中，图中的UI控件用与辅助用户进行标定。目前可以提前确定的数据都不再需要用户修改，用户只需要根据使用情景修改xyz三个方向上的偏移量就可以了。但是，由于Vuforia显示的虚拟物体是直接覆盖在摄像机图像上的，因此虚拟物体会覆盖在人手上，对于显示效果有一定的影响。
+用户还可以切换被追踪物体的模型，例如烧杯、酒精灯、集气瓶等。在实现上述功能的基础上，本系统还提供了一些增强现实辅助实验的样例，例如酒精灯加热试管、集气瓶收集气体等。
 
-目前，虚拟物体实现与物体追踪服务器中得出的物体姿态数据保持完全一致。在比较精细的标定过程之后，也可以与真实物体进行比较好的融合。此外，虚拟物体也提供了一定的增强现实信息，包括虚拟的物体模型、虚拟物质及其含量提示等。
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=6cm]{figure/heating.jpg}
+    \hspace{1cm}
+  \includegraphics[width=6cm]{figure/gatheringGas.jpg}
+  \bicaption[增强现实应用辅助实验样例图]
+    {增强现实应用辅助实验样例图}
+    {The Sample of Experimental Assistance in AR Application}
+ \label{fig:comp}
+\end{figure}
+
+目前，场景中的虚拟物体与物体追踪服务器中得出的物体姿态数据能够保持一致。在比较精细的标定过程之后，也可以与真实物体进行比较好的融合。但是，由于Vuforia显示的虚拟物体是直接覆盖在摄像机图像上的，因此虚拟物体会覆盖在人手上，对于显示效果有一定的影响。
 
 \section{本章小结}
 本章对于物体追踪、网络传输等性能进行了一定的统计与分析，从软件层面和实际的应用体验来说，已经达到了预期要求。此外，也对于客户端的编著、增强现实交互的体验进行了一些分析，一定程度上满足了用户需求。

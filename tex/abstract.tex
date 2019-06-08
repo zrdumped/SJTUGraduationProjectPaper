@@ -4,19 +4,23 @@
 %%==================================================
 
 \begin{abstract}
-随着计算机视觉技术的不断发展，增强现实被越来越广泛地应用在娱乐、工业、医疗等各个领域。但是对于教育的应用还比较有限。教育应用的特殊性在于，用户需要自主编辑虚拟场景应用于不同的教学环境，因此需要为教育者开发一套编著系统以供他们创建个性化的实验用于教学。但是，教学的应用是非常必要的，因为学校的实验条件往往不能满足教学需要，增强现实技术可以很好的为用户提供实验指导、模拟现象等辅助信息。此外，目前的增强现实应用往往不能为用户提供触觉，交互感受有限。通过结合物体追踪技术，可以为用户提供具有真实触感的增强现实交互体验。
+随着计算机视觉技术的不断发展，增强现实被越来越广泛地应用在娱乐、工业、医疗等各个领域。但是对于教育的应用还比较有限。教育应用的特殊性在于，用户需要自主编辑虚拟场景以满足不同的教学目的，因此需要为教育者开发一套编著系统以供他们创建个性化的实验用于教学。同时，教学的应用是非常必要的，因为学校的实验条件往往不能满足教学需要，增强现实技术可以很好的为用户提供实验指导、模拟现象等辅助信息。此外，目前的增强现实应用往往不能为用户提供触觉，交互感受有限。
 
-本文设计实现了一套用于辅助教学的编著和交互系统。系统分为服务器、客户端两部分。服务器利用深度摄像头获取的RGB-D图像，采用三维符号函数描述物体并求解物体姿态，进行物体追踪。客户端基于Unity实现了编著虚拟试验的功能，并且基于Vuforia插件识别平面图像，以及算法和标定的辅助，实现虚实融合和用户交互，并且支持移动端。用户可以通过移动被追踪的显示物体，在手机中看到物体对应的虚拟图像。客户端和服务器之间通过Protocol Buffer进行序列化并且使用TCP/IP进行通信。
+本文对于增强现实应用中缺乏触感的问题，以及教学用增强现实应用对于用户要求过高两个问题提出了解决方案。通过分析、比较各类物体追踪技术和算法，本系统最终使用Ren\cite{ren2017real}的算法实现物体追踪，用户在移动真实物体的同时，可以从增强现实应用中获得虚拟图像。而对于编著系统学习成本高的问题，我们通过了解用户需求，设计、实现了用户友好的编著系统，并将它和增强现实交互进行融合。
+
+本文设计实现了一套用于辅助教学的编著和交互系统。系统分为服务器、客户端两部分。服务器利用深度摄像头获取的RGB-D图像，采用三维符号函数描述物体并求解物体姿态，进行物体追踪。客户端基于Unity实现了编著虚拟试验的功能，并且基于Vuforia插件识别平面图像，以及算法和标定的辅助，实现虚实融合和用户交互，并且支持移动端。用户可以通过移动被追踪的物体，在手机中看到物体对应的虚拟图像。客户端和服务器之间通过Protocol Buffer进行序列化并且使用TCP/IP进行通信。
 
 \keywords{\large 增强现实 \quad 物体追踪 \quad 编著系统 \quad 虚实融合}
 \end{abstract}
 
 \begin{englishabstract}
-With the continuous development of computer vision technology, augmented reality is more and more widely used in entertainment, manufacturing, medical treatment and other fields. But the applications designed for education are still limited. The particularity of educational applications is that educators need to edit their own virtual scenes to apply  in different teaching environments. Therefore, it is necessary to develop an a system for them to create personalized experiments for teaching. However, the application advantages of teaching are very necessary, because the experimental conditions of the school often can not meet the teaching needs, and the augmented reality technology can provide users with auxiliary information such as experimental guidance and simulation phenomena. In addition, current augmented reality applications often fail to provide users with a sense of touch and limited interaction. By combining object tracking technology, users can be provided with an augmented reality interactive experience with a real touch.
+With the continuous development of computer vision technology, augmented reality is more and more widely used in entertainment, manufacturing, medical treatment and other fields. But the applications designed for education are still limited. The particularity of educational applications is that educators need to edit their own virtual scenes to apply in different teaching environments. Therefore, it is necessary to develop an authoring system for them to create personalized experiments for teaching. Meanwhile, the educational applications are very necessary, because the experimental conditions of the school could not meet the teaching needs sometimes, and the AR technology can provide users with auxiliary information such as experimental guidance and simulation phenomena. In addition, current AR applications often fail to provide users with a sense of touch, which limits the interaction. 
 
-This paper designs and implements a set of editing and interaction systems for assisting teaching. The system is divided into two parts: server and client. The server uses the RGB-D image acquired by the depth camera to describe the object using a three-dimensional symbol function and solve the object pose for object tracking. Based on Unity, the client implements the function of virtual experimentation, and based on Vuforia plug-in to identify planar images, as well as algorithm and calibration assistance, realizes virtual and real fusion and user interaction, and supports mobile. The user can see the virtual image corresponding to the object in the mobile phone by moving the displayed object to be tracked. The client and server are serialized by Protocol Buffer and communicate using TCP/IP.
+We propose a solution to the problem of the lacking in tactile sensation and the high learning costs in educational AR applications. By analyzing and comparing various object tracking techniques and algorithms, we finally use the algorithm of Ren\cite{ren2017real} to realize object tracking. Users could see virtual images from AR applications while moving real objects. As for the problem of high costs of system learning, we designed and implemented a user-friendly authoring system after analyzing user needs, and integrated it with augmented reality interaction.
+
+This paper designs and implements a set of editing and interaction system for teaching assistance. The system could be divided into two parts: the server and client. The server uses the RGB-D image acquired by the depth camera to express the object using a three-dimensional signed function and solve the object pose function for object tracking. Based on Unity, the client implements a virtual experimentation environment. Using Vuforia plug-in, the system could identify 2D images. With the help of some algorithms and calibration operations, we realizes the fusion of virtual and real world including user -  application interaction. The client also supports mobile devices. The user can see the virtual image corresponding to the object in a mobile phone by moving the object being tracked. The client and server are serialized by Protocol Buffer and communicate with each other using TCP/IP.
 
  
-\englishkeywords{\large SJTU, master thesis, XeTeX/LaTeX template}
+\englishkeywords{\large augmented reality, object tracking, authoring system, virtual – real fusion}
 \end{englishabstract}
 
