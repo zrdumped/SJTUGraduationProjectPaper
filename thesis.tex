@@ -5,7 +5,7 @@
 
 % 双面打印
 % \documentclass[doctor, openright, twoside]{sjtuthesis}
-\documentclass[bachelor, openany, twoside]{sjtuthesis}
+\documentclass[bachelor, openright, twoside]{sjtuthesis}
 % \documentclass[master, review]{sjtuthesis}
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
@@ -105,7 +105,7 @@
 % 盲审删去删去致谢页
 \ifsjtu@review\relax\else
  \include{tex/ack} 	  %% 致谢  【ZR注释掉了】
-\fi
+ \fi
 
 \ifsjtu@bachelor
   % 学士学位论文要求在最后有一个英文大摘要，单独编页码  【ZR注释掉了】
