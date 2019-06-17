@@ -694,7 +694,7 @@
    {\endlist}
    
 \renewenvironment{thanks}
-  {\chapter{\sjtu@label@thanks}\label{last}}
+  {\chapter{\sjtu@label@thanks}}
   {}
 
 \newenvironment{summary}

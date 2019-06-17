@@ -5,7 +5,7 @@
 
 % 双面打印
 % \documentclass[doctor, openright, twoside]{sjtuthesis}
-\documentclass[bachelor, openright, twoside]{sjtuthesis}
+\documentclass[bachelor, openany, twoside]{sjtuthesis}
 % \documentclass[master, review]{sjtuthesis}
 % \documentclass[%
 %   bachelor|master|doctor,	% 必选项
@@ -37,8 +37,8 @@
 \ifsjtu@review\relax
 % exclude the original claim and authorization
 \else
-	\makeDeclareOriginal
-	\makeDeclareAuthorization
+%	\makeDeclareOriginal
+%	\makeDeclareAuthorization
 \fi
 \fi
 \makeatother
@@ -48,7 +48,7 @@
 
 %% 摘要
 \pagestyle{main}
-\include{tex/abstract}
+%\include{tex/abstract}
 
 %% 目录、插图目录、表格目录   【ZR注释掉了】
 \tableofcontents
@@ -65,17 +65,18 @@
 
 %% 正文内容
  \pagestyle{main}
- \include{tex/myIntro}
- \include{tex/tech}
- \include{tex/requirement}
-  \include{tex/design}
-	 \include{tex/implement}
-	 \include{tex/result}
-	 \include{tex/conclude}
+% \include{tex/myIntro}
+% \include{tex/tech}
+% \include{tex/requirement}
+%  \include{tex/design}
+%	 \include{tex/implement}
+%	 \include{tex/result}
+%	 \include{tex/conclude}
 %	 \include{tex/example}
 %	 \include{tex/faq}
 %	 \include{tex/summary}
-
+\include{tex/report}
+\label{last}
 \appendix	% 使用英文字母对附录编号，重新定义附录中的公式、图图表编号样式
 \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
 \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
@@ -104,13 +105,13 @@
 
 % 盲审删去删去致谢页
 \ifsjtu@review\relax\else
- \include{tex/ack} 	  %% 致谢  【ZR注释掉了】
+% \include{tex/ack} 	  %% 致谢  【ZR注释掉了】
  \fi
 
 \ifsjtu@bachelor
   % 学士学位论文要求在最后有一个英文大摘要，单独编页码  【ZR注释掉了】
-  \pagestyle{biglast}
-  \include{tex/end_english_abstract}
+%  \pagestyle{biglast}
+%  \include{tex/end_english_abstract}
 \else
   % 盲审论文中，发表学术论文及参与科研情况等仅以第几作者注明即可，不要出现作者或他人姓名
   \ifsjtu@review\relax
